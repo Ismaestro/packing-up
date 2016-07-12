@@ -1,0 +1,16 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light"></style>
+
+    <style name="AppTheme" parent="AppBaseTheme"></style>
+
+    <style name="CustomRadio" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/custom_radio</item>
+    </style>
+
+    <color name="grey">#F0F0F0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="greyStroke">#DDDDDD</color>
+    <color name="greyDark">#A0A0A0</color>
+
+</resources>

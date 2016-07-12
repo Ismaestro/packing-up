@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<style type='text/css'>
+			@font-face {
+				font-family: 'Ebrima';
+				src: url('file:///android_asset/fonts/Ebrima.ttf');
+			}
+			body {
+				font-family: 'Ebrima';
+			}
+			a {
+				color: #000000;
+			}
+			div.title {
+				color: #00C4FC;
+				font-size: 1.2em;
+				font-weight: bold;
+				margin-bottom: 0.5em;
+				text-align: left;
+			}
+			div.subtitle{
+				color: #00C4FC;
+				font-size: 0.8em;
+				margin-bottom: 1em;
+				text-align: left;
+			}
+			div.freetext {
+				text-indent: 0.5em;
+				color: #000000;
+			}
+			div.list {
+				color: #000000
+			}
+		</style>
+	</head>
+	<body>
+		$ 1.9
+		% Version 1.9
+		_ 25/06/2014
+		! Bug fixed: solved a problem when no internet on the phone and try to get the location.
+		! Enhanced toasts appearance.
+		$ 1.8
+		% Version 1.8
+		_ 24/06/2014
+		! Bug fixed: now you can create a new item with special characters in the name.
+		! New feature: all the information of a trip is saved when the app is closed. The user can resume the trip assistant later without losing data.
+		$ 1.7
+		% Version 1.7
+		_ 28/05/2014
+		! Enhanced items list
+		! Prevented a possible error when rating the app in the market
+		! Added new action to share the app
+		! Enhanced usability
+		$ 1.6
+		% Version 1.6
+		_ 03/05/2014
+		! Supporting multiple screen sizes
+		! Added new option: Instructions-Tips
+		$ 1.5
+		% Version 1.5
+		_ 01/05/2014
+		! Added two options for:
+		* Post a comment to the developer
+		* Vote app in the market
+		! First version from BitBucket
+		! Mode landscape forbidden
+		$ 1.4
+		% Version 1.4
+		_ 29/04/2014
+		! New icon pack added
+		$ 1.3
+		% Version 1.3
+		_ 29/04/2014
+		! Fixed the following issues:
+		* Bug with AdMob ads
+		* Bug with Google Maps service
+		! Changed the name on Google Play
+		$ 1.2
+		% Version 1.2
+		_ 28/04/2014
+		! Added new tools:
+		* Bug tracker: Crittercism
+		* AdMob to show ads
+		* New Changelog
+		$ 1.1
+		% Version 1.1
+		_ 26/04/2014
+		! First version.
+		$ END_OF_CHANGE_LOG
+	</body>
+</html>
