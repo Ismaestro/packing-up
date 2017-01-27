@@ -1,12 +1,14 @@
 {
-  "name": "packingUp",
-  "author": "Ismael Ramos <ramossilvanismael@gmail.com>",
-  "homepage": "https://play.google.com/store/apps/details?id=packingup.core.activities",
+  "name": "ionic-hello-world",
+  "author": "Ionic Framework",
+  "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
-    "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
-    "build": "ionic-app-scripts build"
+    "build": "ionic-app-scripts build",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve",
+    "ionic:run": "ionic run"
   },
   "dependencies": {
     "@angular/common": "2.2.1",
@@ -40,9 +42,9 @@
   ],
   "cordovaPlatforms": [
     {
-      "platform": "android",
+      "platform": "ios",
       "version": "",
-      "locator": "browser"
+      "locator": "ios"
     }
   ],
   "description": "packingUp: An Ionic project"
