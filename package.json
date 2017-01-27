@@ -1,13 +1,12 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "packingUp",
+  "author": "Ismael Ramos <ramossilvanismael@gmail.com>",
+  "homepage": "https://play.google.com/store/apps/details?id=packingup.core.activities",
   "private": true,
   "scripts": {
+    "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
-    "build": "ionic-app-scripts build",
-    "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "build": "ionic-app-scripts build"
   },
   "dependencies": {
     "@angular/common": "2.2.1",
@@ -39,6 +38,12 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard"
   ],
-  "cordovaPlatforms": [],
-  "description": "cutePuppyPics: An Ionic project"
+  "cordovaPlatforms": [
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "browser"
+    }
+  ],
+  "description": "packingUp: An Ionic project"
 }
