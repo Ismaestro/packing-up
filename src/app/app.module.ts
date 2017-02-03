@@ -1,10 +1,13 @@
 import {NgModule, ErrorHandler} from '@angular/core';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
-import {AboutPage} from '../pages/about/about';
-import {ContactPage} from '../pages/contact/contact';
-import {HomePage} from '../pages/home/home';
-import {TabsPage} from '../pages/tabs/tabs';
+import {AboutPage} from './pages/about/about.component';
+import {ContactPage} from './pages/contact/contact.component';
+import {HomePage} from './pages/home/home.component';
+import {TabsPage} from './pages/tabs/tabs.component';
+import {DetailsPage} from './pages/item-detail/item-detail.component';
+import {ItemsList} from './items/items-list/items-list.component';
+import {ItemsService} from './items/items-list/items-list.service';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,9 @@ import {TabsPage} from '../pages/tabs/tabs';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    DetailsPage,
+    ItemsList
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,9 +28,12 @@ import {TabsPage} from '../pages/tabs/tabs';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    DetailsPage,
+    ItemsList
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ItemsService]
 })
+
 export class AppModule {
 }

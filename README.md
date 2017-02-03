@@ -6,7 +6,11 @@
 
 ### How do I get set up? ###
 
-* Use Android Studio like a normal app
+Ionic 2 app. Just run:
+
+`npm install`
+
+`npm start`
 
 ### Who do I talk to? ###
 
