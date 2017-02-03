@@ -16,15 +16,15 @@ export class ItemsList {
               private zone: NgZone,
               private modalCtrl: ModalController) {
     this.platform.ready().then(() => {
-      this.itemsService.initDB();
 
-      this.itemsService.getAll()
-        .then(data => {
-          this.zone.run(() => {
-            this.items = data;
+      this.itemsService.loadInitData().then(() => {
+        this.itemsService.getAll()
+          .then(data => {
+            this.zone.run(() => {
+              this.items = data;
+            });
           });
-        })
-        .catch(console.error.bind(console));
+      });
     });
   }
 

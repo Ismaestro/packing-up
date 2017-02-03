@@ -3,34 +3,49 @@ import * as PouchDB from 'pouchdb';
 
 @Injectable()
 export class ItemsService {
-  private db;
+  private settingsDB;
+  private itemsDB;
   private items;
 
-  initDB() {
-    this.db = new PouchDB('items', {adapter: 'websql'});
+  constructor() {
+    this.settingsDB = new PouchDB('settings', {adapter: 'websql'});
+    this.itemsDB = new PouchDB('items', {adapter: 'websql'});
+  }
+
+  loadInitData() {
+    return this.settingsDB.get('initialLoad').catch(() => {
+      this.itemsDB.post({name: 'asd'});
+
+      this.settingsDB.put({
+        _id: 'initialLoad',
+        value: true
+      });
+
+      return Promise.resolve();
+    });
   }
 
   addItem(item) {
-    return this.db.post(item);
+    return this.itemsDB.post(item);
   }
 
   updateItem(item) {
-    return this.db.put(item);
+    return this.itemsDB.put(item);
   }
 
   deleteItem(item) {
-    return this.db.remove(item);
+    return this.itemsDB.remove(item);
   }
 
   getAll() {
     if (!this.items) {
-      return this.db.allDocs({include_docs: true})
+      return this.itemsDB.allDocs({include_docs: true})
         .then(docs => {
           this.items = docs.rows.map(row => {
             return row.doc;
           });
 
-          this.db.changes({live: true, since: 'now', include_docs: true})
+          this.itemsDB.changes({live: true, since: 'now', include_docs: true})
             .on('change', this.onDatabaseChange);
 
           return this.items;
