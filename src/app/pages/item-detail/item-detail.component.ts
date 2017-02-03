@@ -11,7 +11,6 @@ export class DetailsPage {
   public item: any = {};
   public isNew = true;
   public action = 'Add';
-  public isoDate = '';
 
   constructor(private viewCtrl: ViewController,
               private navParams: NavParams,
@@ -23,13 +22,10 @@ export class DetailsPage {
       this.item = editItem;
       this.isNew = false;
       this.action = 'Edit';
-      this.isoDate = this.item.Date.toISOString().slice(0, 10);
     }
   }
 
   save() {
-    this.item.Date = new Date(this.isoDate);
-
     if (this.isNew) {
       this.itemsService.addItem(this.item)
         .catch(console.error.bind(console));

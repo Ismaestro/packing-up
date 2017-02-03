@@ -27,7 +27,6 @@ export class ItemsService {
       return this.db.allDocs({include_docs: true})
         .then(docs => {
           this.items = docs.rows.map(row => {
-            row.doc.Date = new Date(row.doc.Date);
             return row.doc;
           });
 
@@ -50,7 +49,6 @@ export class ItemsService {
         this.items.splice(index, 1);
       }
     } else {
-      change.doc.Date = new Date(change.doc.Date);
       if (item && item._id === change.id) {
         this.items[index] = change.doc;
       } else {

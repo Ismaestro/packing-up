@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ action }} Item</ion-title>
+    <ion-title>{{ action }} Item </ion-title>
     <ion-buttons end *ngIf="!isNew">
       <button ion-button (click)="deleteItem()">
         <ion-icon name="trash"></ion-icon>
@@ -13,11 +13,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Name</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="item.Name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Date</ion-label>
-      <ion-datetime displayFormat="MMMM D, YYYY" pickerFormat="MMMM D YYYY" [(ngModel)]="isoDate"></ion-datetime>
+      <ion-input text-right type="text" [(ngModel)]="item.name"></ion-input>
     </ion-item>
   </ion-list>
   <button ion-button block (click)="save()">Save</button>

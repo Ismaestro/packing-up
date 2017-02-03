@@ -1,8 +1,7 @@
 <ion-content>
   <ion-list inset>
     <ion-item *ngFor="let item of items" (click)="showDetail(item)">
-      <div item-left>{{ item.Name }}</div>
-      <div item-right>{{ item.Date | date:'yMMMMd' }}</div>
+      <div item-left>{{ item.name }}</div>
     </ion-item>
   </ion-list>
 </ion-content>
