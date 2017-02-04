@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as PouchDB from 'pouchdb';
+import * as pouchdbUpsert from 'pouchdb-upsert';
 
 @Injectable()
 export class ItemsService {
@@ -8,6 +9,7 @@ export class ItemsService {
   private items;
 
   constructor() {
+    PouchDB.plugin(pouchdbUpsert);
     this.settingsDB = new PouchDB('settings', {adapter: 'websql'});
     this.itemsDB = new PouchDB('items', {adapter: 'websql'});
   }
@@ -30,11 +32,43 @@ export class ItemsService {
   }
 
   updateItem(item) {
-    return this.itemsDB.put(item);
+    this.itemsDB.get(item._id, (err, doc) => {
+      if (err) { return; }
+
+      let newObj = {
+        _id: item._id,
+        _rev: doc._rev,
+        name: item.name,
+        checked: item.checked
+      };
+
+      this.itemsDB.put(newObj, (err) => {
+        if (err) {
+          this.itemsDB.put(newObj, () => {
+          });
+        }
+      });
+    });
   }
 
   deleteItem(item) {
-    return this.itemsDB.remove(item);
+    this.itemsDB.get(item._id, (err, doc) => {
+      if (err) { return; }
+
+      let newObj = {
+        _id: item._id,
+        _rev: doc._rev,
+        name: item.name,
+        checked: item.checked
+      };
+
+      this.itemsDB.put(newObj, (err) => {
+        if (err) {
+          this.itemsDB.remove(newObj, () => {
+          });
+        }
+      });
+    });
   }
 
   getAll() {

@@ -1,7 +1,14 @@
 <ion-content>
   <ion-list inset>
-    <ion-item *ngFor="let item of items" (click)="showDetail(item)">
-      <div item-left>{{ item.name }}</div>
+    <ion-item *ngFor="let item of items"
+              (press)="showDetail(item)">
+        <ion-checkbox item-left
+                      [(ngModel)]="item.checked"
+                      (click)="itemChanged(item)">
+        </ion-checkbox>
+        <ion-label tappable>
+          {{item.name}}
+        </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

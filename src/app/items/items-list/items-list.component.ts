@@ -28,6 +28,10 @@ export class ItemsList {
     });
   }
 
+  itemChanged(item) {
+    this.itemsService.updateItem(item);
+  }
+
   showDetail(item) {
     let modal = this.modalCtrl.create(DetailsPage, {item: item});
     modal.present();

@@ -16,5 +16,11 @@
       <ion-input text-right type="text" [(ngModel)]="item.name"></ion-input>
     </ion-item>
   </ion-list>
-  <button ion-button block (click)="save()">Save</button>
+  <button ion-button block (click)="save()">
+    Save
+  </button>
+  <button ion-button block color="light"
+          (click)="cancel()">
+    Cancel
+  </button>
 </ion-content>

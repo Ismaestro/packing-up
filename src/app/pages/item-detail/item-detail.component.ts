@@ -30,16 +30,18 @@ export class DetailsPage {
       this.itemsService.addItem(this.item)
         .catch(console.error.bind(console));
     } else {
-      this.itemsService.updateItem(this.item)
-        .catch(console.error.bind(console));
+      this.itemsService.updateItem(this.item);
     }
 
     this.dismiss();
   }
 
+  cancel() {
+    this.dismiss();
+  }
+
   deleteItem() {
-    this.itemsService.deleteItem(this.item)
-      .catch(console.error.bind(console));
+    this.itemsService.deleteItem(this.item);
 
     this.dismiss();
   }
