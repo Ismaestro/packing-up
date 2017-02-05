@@ -62,7 +62,7 @@ export class ItemsService {
         checked: item.checked
       };
 
-      this.itemsDB.put(newObj, (err) => {
+      this.itemsDB.remove(newObj, (err) => {
         if (err) {
           this.itemsDB.remove(newObj, () => {
           });
