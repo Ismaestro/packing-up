@@ -1,7 +1,7 @@
 import {NgModule, ErrorHandler} from '@angular/core';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
-import {AboutPage} from './pages/preferences/preferences.component';
+import {PreferencesPage} from './pages/preferences/preferences.component';
 import {ContactPage} from './pages/contact/contact.component';
 import {HomePage} from './pages/home/home.component';
 import {TabsPage} from './pages/tabs/tabs.component';
@@ -17,7 +17,7 @@ import {TranslateLoaderFactory} from './app.translate.factory';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    PreferencesPage,
     ContactPage,
     HomePage,
     TabsPage,
@@ -38,7 +38,7 @@ import {TranslateLoaderFactory} from './app.translate.factory';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    PreferencesPage,
     ContactPage,
     HomePage,
     TabsPage,

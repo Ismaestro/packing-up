@@ -13,7 +13,7 @@
     </ion-list-header>
     <ion-item (click)="setLanguage('en')">{{'english' | translate}}</ion-item>
     <ion-item (click)="setLanguage('es')">{{'spanish' | translate}}</ion-item>
-    <ion-list-header>
+    <ion-list-header class="reset-label">
       {{'resetList' | translate}}
     </ion-list-header>
     <button ion-button color="danger" (click)="resetDB()">{{'reset' | translate}}</button>

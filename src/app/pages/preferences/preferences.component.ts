@@ -3,11 +3,11 @@ import {TranslateService} from "ng2-translate";
 import {ItemsService} from "../../items/items-list/items-list.service";
 
 @Component({
-  selector: 'page-about',
+  selector: 'page-preferences',
   templateUrl: 'preferences.component.html'
 })
 
-export class AboutPage {
+export class PreferencesPage {
 
   private translateService: TranslateService;
 
