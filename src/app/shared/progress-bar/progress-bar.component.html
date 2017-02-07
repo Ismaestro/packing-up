@@ -1,5 +1,5 @@
-<div class="progress-outer">
-  <div class="progress-inner" [style.width]="progress + '%'">
-    {{progress}}%
+<div class="progress-outer" *ngIf="total !== 0">
+  <div class="progress-inner" [style.width]="100/total*progress + '%'">
+    {{ (100/total*progress) | number : '1.0-0'}}%
   </div>
 </div>

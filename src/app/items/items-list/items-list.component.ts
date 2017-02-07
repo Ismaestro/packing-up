@@ -32,9 +32,8 @@ export class ItemsList {
   }
 
   itemChanged(item) {
-    console.log("ENTRO");
     this.itemsService.updateItem(item);
-    this.calculateItemsChecked(item._id);
+    this.calculateItemsChecked(item);
   }
 
   showDetail(item) {
@@ -42,12 +41,14 @@ export class ItemsList {
     modal.present();
   }
 
-  calculateItemsChecked(itemId?) {
-    let copy = Object.assign({}, this.items);
-
+  calculateItemsChecked(item?) {
+    let itemCopy = Object.assign({}, item);
     let counter = 0;
-    for (let item of copy) {
-      if (item.checked) {
+    for (let item of this.items) {
+      if (itemCopy._id === item._id) {
+        item.checked = itemCopy.checked; // wtf
+      }
+      if (item.checked === true) {
         counter++;
       }
     }

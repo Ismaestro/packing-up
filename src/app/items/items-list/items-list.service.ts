@@ -41,7 +41,7 @@ export class ItemsService {
 
       this.itemsDB.put(newObj, (err) => {
         if (err) {
-          this.itemsDB.put(newObj, () => {
+          this.itemsDB.put(newObj, () => { // wtf
           });
         }
       });
