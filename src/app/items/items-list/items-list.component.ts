@@ -9,7 +9,7 @@ import {DetailsPage} from '../../pages/item-detail/item-detail.component';
 })
 export class ItemsList {
   public items = [];
-  public categories = ['A','B'];
+  public categories = [];
   public itemsChecked = 0;
 
   constructor(private itemsService: ItemsService,
@@ -20,11 +20,18 @@ export class ItemsList {
     this.platform.ready().then(() => {
 
       this.itemsService.loadInitData().then(() => {
-        this.itemsService.getAll()
+        this.itemsService.getAllItems()
           .then(data => {
             this.zone.run(() => {
               this.items = data;
               this.calculateItemsChecked();
+            });
+          });
+
+        this.itemsService.getAllCategories()
+          .then(data => {
+            this.zone.run(() => {
+              this.categories = data;
             });
           });
       });

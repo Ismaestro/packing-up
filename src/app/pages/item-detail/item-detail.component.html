@@ -12,6 +12,12 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-select [(ngModel)]="item.categoryId">
+        <ion-option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
       <ion-label>Name</ion-label>
       <ion-input text-right type="text" [(ngModel)]="item.name"></ion-input>
     </ion-item>

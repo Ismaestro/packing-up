@@ -5,18 +5,24 @@ import * as pouchdbUpsert from 'pouchdb-upsert';
 @Injectable()
 export class ItemsService {
   private settingsDB;
+  private categoriesDB;
   private itemsDB;
   private items;
+  private categories;
 
   constructor() {
     PouchDB.plugin(pouchdbUpsert);
     this.settingsDB = new PouchDB('settings', {adapter: 'websql'});
     this.itemsDB = new PouchDB('items', {adapter: 'websql'});
+    this.categoriesDB = new PouchDB('categories', {adapter: 'websql'});
   }
 
   loadInitData() {
     return this.settingsDB.get('initialLoad').catch(() => {
-      this.itemsDB.post({name: 'asd', category: 'B'});
+      this.itemsDB.post({name: 'asd1', categoryId: 'A'});
+      this.itemsDB.post({name: 'asd2', categoryId: 'B'});
+      this.categoriesDB.post({id: 'A', name: 'A bla bla bla'});
+      this.categoriesDB.post({id: 'B', name: 'B bla bla bla'});
 
       this.settingsDB.put({
         _id: 'initialLoad',
@@ -28,7 +34,6 @@ export class ItemsService {
   }
 
   addItem(item) {
-    item.category = 'A';
     return this.itemsDB.post(item);
   }
 
@@ -68,7 +73,7 @@ export class ItemsService {
     });
   }
 
-  getAll() {
+  getAllItems() {
     if (!this.items) {
       return this.itemsDB.allDocs({include_docs: true})
         .then(docs => {
@@ -83,6 +88,21 @@ export class ItemsService {
         });
     } else {
       return Promise.resolve(this.items);
+    }
+  }
+
+  getAllCategories() {
+    if (!this.categories) {
+      return this.categoriesDB.allDocs({include_docs: true})
+        .then(docs => {
+          this.categories = docs.rows.map(row => {
+            return row.doc;
+          });
+
+          return this.categories;
+        });
+    } else {
+      return Promise.resolve(this.categories);
     }
   }
 

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import {NavParams, ViewController} from 'ionic-angular';
 import {ItemsService} from '../../items/items-list/items-list.service';
 
@@ -8,13 +8,22 @@ import {ItemsService} from '../../items/items-list/items-list.service';
 })
 
 export class DetailsPage {
+  public categories = [];
   public item: any = {};
   public isNew = true;
   public action = 'Add';
 
   constructor(private viewCtrl: ViewController,
               private navParams: NavParams,
+              private zone: NgZone,
               private itemsService: ItemsService) {
+
+    this.itemsService.getAllCategories()
+      .then(data => {
+        this.zone.run(() => {
+          this.categories = data;
+        });
+      });
 
     let editItem = this.navParams.get('item');
 
