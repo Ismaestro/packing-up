@@ -1,0 +1,18 @@
+{
+  "home": "Inicio",
+  "preferences": "Preferencias",
+  "contact": "Contacto",
+  "travelList": "Lista para viajar",
+  "languages": "Idiomas",
+  "english": "Inglés",
+  "spanish": "Español",
+  "item": "Item",
+  "category": "Categoría",
+  "name": "Nombre",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "contactUs": "Contactar",
+  "sendFeedback": "Enviar feedback",
+  "noItems": "No hay nada que llevar. Añade algo!",
+  "selectCategory": "Selecciona una categoría"
+}

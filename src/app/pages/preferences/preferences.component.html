@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{'preferences' | translate}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      {{'languages' | translate}}
+    </ion-list-header>
+    <ion-item (click)="setLanguage('en')">{{'english' | translate}}</ion-item>
+    <ion-item (click)="setLanguage('es')">{{'spanish' | translate}}</ion-item>
+  </ion-list>
+</ion-content>

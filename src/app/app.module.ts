@@ -1,7 +1,7 @@
 import {NgModule, ErrorHandler} from '@angular/core';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
-import {AboutPage} from './pages/about/about.component';
+import {AboutPage} from './pages/preferences/preferences.component';
 import {ContactPage} from './pages/contact/contact.component';
 import {HomePage} from './pages/home/home.component';
 import {TabsPage} from './pages/tabs/tabs.component';
@@ -10,6 +10,9 @@ import {ItemsList} from './items/items-list/items-list.component';
 import {ItemsService} from './items/items-list/items-list.service';
 import {CategoriesPipe} from "./shared/pipes/items-categories.pipe";
 import {ProgressBarComponent} from "./shared/progress-bar/progress-bar.component";
+import {HttpModule, Http} from "@angular/http";
+import {TranslateModule, TranslateLoader} from "ng2-translate";
+import {TranslateLoaderFactory} from './app.translate.factory';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,13 @@ import {ProgressBarComponent} from "./shared/progress-bar/progress-bar.component
     ProgressBarComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: TranslateLoaderFactory,
+      deps: [Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
