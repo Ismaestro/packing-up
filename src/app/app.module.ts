@@ -8,7 +8,6 @@ import {TabsPage} from './pages/tabs/tabs.component';
 import {DetailsPage} from './pages/item-detail/item-detail.component';
 import {ItemsList} from './items/items-list/items-list.component';
 import {ItemsService} from './items/items-list/items-list.service';
-import {CategoriesPipe} from "./shared/pipes/items-categories.pipe";
 
 @NgModule({
   declarations: [
@@ -19,7 +18,8 @@ import {CategoriesPipe} from "./shared/pipes/items-categories.pipe";
     TabsPage,
     DetailsPage,
     ItemsList,
-    CategoriesPipe
+    CategoriesPipe,
+    ProgressBarComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
