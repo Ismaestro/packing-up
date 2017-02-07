@@ -1,14 +1,15 @@
 <ion-content>
-  <ion-list inset>
-    <ion-item *ngFor="let item of items"
+  <ion-item-group *ngFor="let category of categories">
+    <ion-item-divider color="light">{{category}}</ion-item-divider>
+    <ion-item *ngFor="let item of items | filter : 'category' : category"
               (press)="showDetail(item)">
-        <ion-checkbox item-left
-                      [(ngModel)]="item.checked"
-                      (click)="itemChanged(item)">
-        </ion-checkbox>
-        <ion-label tappable>
-          {{item.name}}
-        </ion-label>
+      <ion-checkbox item-left
+                    [(ngModel)]="item.checked"
+                    (click)="itemChanged(item)">
+      </ion-checkbox>
+      <ion-label tappable>
+        {{item.name}}
+      </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-item-group>
 </ion-content>

@@ -16,7 +16,7 @@ export class ItemsService {
 
   loadInitData() {
     return this.settingsDB.get('initialLoad').catch(() => {
-      this.itemsDB.post({name: 'asd'});
+      this.itemsDB.post({name: 'asd', category: 'B'});
 
       this.settingsDB.put({
         _id: 'initialLoad',
@@ -28,6 +28,7 @@ export class ItemsService {
   }
 
   addItem(item) {
+    item.category = 'A';
     return this.itemsDB.post(item);
   }
 
@@ -35,12 +36,8 @@ export class ItemsService {
     this.itemsDB.get(item._id, (err, doc) => {
       if (err) { return; }
 
-      let newObj = {
-        _id: item._id,
-        _rev: doc._rev,
-        name: item.name,
-        checked: item.checked
-      };
+      let newObj = Object.assign({}, item);
+      newObj._rev = doc._rev;
 
       this.itemsDB.put(newObj, (err) => {
         if (err) {

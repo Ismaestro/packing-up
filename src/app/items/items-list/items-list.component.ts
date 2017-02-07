@@ -9,6 +9,7 @@ import {DetailsPage} from '../../pages/item-detail/item-detail.component';
 })
 export class ItemsList {
   public items = [];
+  public categories = ['A','B'];
 
   constructor(private itemsService: ItemsService,
               private nav: NavController,
