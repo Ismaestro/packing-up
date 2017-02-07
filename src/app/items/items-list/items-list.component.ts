@@ -9,6 +9,7 @@ import {DetailsPage} from '../../pages/item-detail/item-detail.component';
 })
 export class ItemsList {
   public items = [];
+  public itemsChecked = 0;
 
   constructor(private itemsService: ItemsService,
               private nav: NavController,
@@ -22,6 +23,7 @@ export class ItemsList {
           .then(data => {
             this.zone.run(() => {
               this.items = data;
+              this.calculateItemsChecked();
             });
           });
       });
@@ -29,11 +31,26 @@ export class ItemsList {
   }
 
   itemChanged(item) {
+    console.log("ENTRO");
     this.itemsService.updateItem(item);
+    this.calculateItemsChecked(item._id);
   }
 
   showDetail(item) {
     let modal = this.modalCtrl.create(DetailsPage, {item: item});
     modal.present();
+  }
+
+  calculateItemsChecked(itemId?) {
+    let copy = Object.assign({}, this.items);
+
+    let counter = 0;
+    for (let item of copy) {
+      if (item.checked) {
+        counter++;
+      }
+    }
+
+    this.itemsChecked = counter;
   }
 }

@@ -8,6 +8,7 @@ import {TabsPage} from './pages/tabs/tabs.component';
 import {DetailsPage} from './pages/item-detail/item-detail.component';
 import {ItemsList} from './items/items-list/items-list.component';
 import {ItemsService} from './items/items-list/items-list.service';
+import {ProgressBarComponent} from './shared/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {ItemsService} from './items/items-list/items-list.service';
     HomePage,
     TabsPage,
     DetailsPage,
-    ItemsList
+    ItemsList,
+    ProgressBarComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
