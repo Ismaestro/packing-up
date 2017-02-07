@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ action }} {{'item' | translate}}</ion-title>
+    <ion-title>{{ action | translate}} {{'item' | translate}}</ion-title>
     <ion-buttons end *ngIf="!isNew">
       <button ion-button (click)="deleteItem()">
         <ion-icon name="trash"></ion-icon>
@@ -14,12 +14,12 @@
     <ion-item>
       <ion-label>{{'selectCategory' | translate}}</ion-label>
       <ion-select [(ngModel)]="item.categoryId">
-        <ion-option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</ion-option>
+        <ion-option *ngFor="let category of categories" value="{{category.id}}">{{category.id | translate}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>{{'name' | translate}}</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="item.name"></ion-input>
+      <ion-input text-right type="text" [(ngModel)]="item.id"></ion-input>
     </ion-item>
   </ion-list>
   <button ion-button block (click)="save()">

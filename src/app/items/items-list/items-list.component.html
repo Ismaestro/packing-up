@@ -1,7 +1,7 @@
 <ion-content *ngIf="items.length !== 0">
   <progress-bar [progress]="itemsChecked" [total]="items.length"></progress-bar>
   <ion-item-group *ngFor="let category of categories">
-    <ion-item-divider color="light">{{category.name}}</ion-item-divider>
+    <ion-item-divider color="light">{{category.id | translate}}</ion-item-divider>
     <ion-item *ngFor="let item of items | filter : 'categoryId' : category.id"
               (press)="showDetail(item)">
         <ion-checkbox item-left
@@ -9,7 +9,7 @@
                       (ionChange)="itemChanged(item)">
         </ion-checkbox>
         <ion-label tappable>
-          {{item.name}}
+          {{item.id | translate}}
         </ion-label>
     </ion-item>
   </ion-item-group>

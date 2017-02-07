@@ -11,7 +11,7 @@ export class DetailsPage {
   public categories = [];
   public item: any = {};
   public isNew = true;
-  public action = 'Add';
+  public action = 'add';
 
   constructor(private viewCtrl: ViewController,
               private navParams: NavParams,
@@ -30,7 +30,7 @@ export class DetailsPage {
     if (editItem) {
       this.item = editItem;
       this.isNew = false;
-      this.action = 'Edit';
+      this.action = 'edit';
     }
   }
 

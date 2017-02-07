@@ -14,5 +14,17 @@
   "contactUs": "Contactar",
   "sendFeedback": "Enviar feedback",
   "noItems": "No hay nada que llevar. Añade algo!",
-  "selectCategory": "Selecciona una categoría"
+  "selectCategory": "Selecciona una categoría",
+  "add": "Añadir",
+  "edit": "Editar",
+  "resetList": "Resetear la lista de viaje",
+  "reset": "Resetear",
+
+  "documentation": "Documentación",
+  "clothes": "Ropa",
+
+  "credit-cards": "Tarjetas de crédito",
+  "driver-license": "Carné de conducir",
+  "footwear": "Calzado",
+  "glasses": "Gafas"
 }

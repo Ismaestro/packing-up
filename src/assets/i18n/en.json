@@ -14,5 +14,17 @@
   "contactUs": "Contact me",
   "sendFeedback": "Send feedback",
   "noItems": "Nothing to carry on. Add something!",
-  "selectCategory": "Select one category"
+  "selectCategory": "Select one category",
+  "add": "Add",
+  "edit": "Edit",
+  "resetList": "Reset travel list",
+  "reset": "Reset",
+
+  "documentation": "Documentation",
+  "clothes": "Clothes",
+
+  "credit-cards": "Credit cards",
+  "driver-license": "Driver license",
+  "footwear": "Footwear",
+  "glasses": "Glasses"
 }

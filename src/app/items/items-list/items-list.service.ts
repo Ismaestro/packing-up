@@ -12,6 +12,10 @@ export class ItemsService {
 
   constructor() {
     PouchDB.plugin(pouchdbUpsert);
+    this.createDBs();
+  }
+
+  createDBs() {
     this.settingsDB = new PouchDB('settings', {adapter: 'websql'});
     this.itemsDB = new PouchDB('items', {adapter: 'websql'});
     this.categoriesDB = new PouchDB('categories', {adapter: 'websql'});
@@ -19,10 +23,8 @@ export class ItemsService {
 
   loadInitData() {
     return this.settingsDB.get('initialLoad').catch(() => {
-      this.itemsDB.post({name: 'asd1', categoryId: 'A'});
-      this.itemsDB.post({name: 'asd2', categoryId: 'B'});
-      this.categoriesDB.post({id: 'A', name: 'A bla bla bla'});
-      this.categoriesDB.post({id: 'B', name: 'B bla bla bla'});
+      this.loadCategories();
+      this.loadItems();
 
       this.settingsDB.put({
         _id: 'initialLoad',
@@ -31,6 +33,19 @@ export class ItemsService {
 
       return Promise.resolve();
     });
+  }
+
+  loadCategories() {
+    this.categoriesDB.post({id: 'documentation'});
+    this.categoriesDB.post({id: 'clothes'});
+  }
+
+  loadItems() {
+    this.itemsDB.post({id: 'credit-cards', categoryId: 'documentation'});
+    this.itemsDB.post({id: 'driver-license', categoryId: 'documentation'});
+
+    this.itemsDB.post({id: 'footwear', categoryId: 'clothes'});
+    this.itemsDB.post({id: 'glasses', categoryId: 'clothes'});
   }
 
   addItem(item) {
@@ -60,7 +75,7 @@ export class ItemsService {
       let newObj = {
         _id: item._id,
         _rev: doc._rev,
-        name: item.name,
+        id: item.id,
         checked: item.checked
       };
 
@@ -104,6 +119,17 @@ export class ItemsService {
     } else {
       return Promise.resolve(this.categories);
     }
+  }
+
+  resetDB() {
+    new PouchDB('settings').destroy().then(() => {
+      new PouchDB('items').destroy().then(() => {
+        new PouchDB('categories').destroy().then(() => {
+          document.location.href = 'index.html';
+        });
+      });
+    });
+
   }
 
   private onDatabaseChange = (change) => {
