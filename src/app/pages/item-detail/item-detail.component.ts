@@ -1,6 +1,7 @@
 import {Component, NgZone} from '@angular/core';
 import {NavParams, ViewController} from 'ionic-angular';
 import {ItemsService} from '../../items/items-list/items-list.service';
+import {TranslateService} from "ng2-translate";
 
 @Component({
   selector: 'page-item-detail',
@@ -16,7 +17,8 @@ export class DetailsPage {
   constructor(private viewCtrl: ViewController,
               private navParams: NavParams,
               private zone: NgZone,
-              private itemsService: ItemsService) {
+              private itemsService: ItemsService,
+              private translateService: TranslateService) {
 
     this.itemsService.getAllCategories()
       .then(data => {
@@ -32,6 +34,10 @@ export class DetailsPage {
       this.isNew = false;
       this.action = 'edit';
     }
+
+    this.translateService.get(this.item.id).subscribe((text: string) => {
+      this.item.id = text;
+    })
   }
 
   save() {

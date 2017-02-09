@@ -2,4 +2,8 @@ items-list {
   ion-content {
     top: 4em;
   }
+
+  ion-item-group {
+    display: inline-table;
+  }
 }

@@ -19,7 +19,8 @@
     </ion-item>
     <ion-item>
       <ion-label>{{'name' | translate}}</ion-label>
-      <ion-input text-right type="text" [(ngModel)]="item.id"></ion-input>
+      <ion-input text-right type="text"
+                 [(ngModel)]="item.id"></ion-input>
     </ion-item>
   </ion-list>
   <button ion-button block (click)="save()">
