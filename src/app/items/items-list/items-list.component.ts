@@ -1,7 +1,9 @@
-import {Component, NgZone} from "@angular/core";
-import {ModalController, NavController, Platform} from 'ionic-angular';
-import {ItemsService} from './items-list.service';
-import {DetailsPage} from '../../pages/item-detail/item-detail.component';
+import {Component} from "@angular/core";
+import {ModalController} from 'ionic-angular';
+import {CategoriesService} from '../../shared/services/categories.service';
+import {ItemsService} from '../../shared/services/items.service';
+import {ItemDetailsPage} from '../../pages/item-detail/item-detail.component';
+import {CategoryDetailsPage} from "../../pages/category-detail/category-detail.component";
 
 @Component({
   selector: 'items-list',
@@ -12,54 +14,53 @@ export class ItemsList {
   public categories = [];
   public itemsChecked = 0;
 
-  constructor(private itemsService: ItemsService,
-              private nav: NavController,
-              private platform: Platform,
-              private zone: NgZone,
+  constructor(private categoriesService: CategoriesService,
+              private itemsService: ItemsService,
               private modalCtrl: ModalController) {
-    this.platform.ready().then(() => {
+    this.loadCategories();
+    this.loadItems();
+  }
 
-      this.itemsService.loadInitData().then(() => {
-        this.itemsService.getAllItems()
-          .then(data => {
-            this.zone.run(() => {
-              this.items = data;
-              this.calculateItemsChecked();
-            });
-          });
-
-        this.itemsService.getAllCategories()
-          .then(data => {
-            this.zone.run(() => {
-              this.categories = data;
-            });
-          });
+  loadCategories() {
+    this.categoriesService.getAll()
+      .then(categories => {
+        this.categories = categories;
       });
-    });
+  }
+
+  loadItems() {
+    this.itemsService.getAll()
+      .then(items => {
+        this.items = items;
+        this.calculateItemsChecked();
+      });
   }
 
   itemChanged(item) {
-    this.itemsService.updateItem(item);
-    this.calculateItemsChecked(item);
+    this.itemsService.updateItem(item).then(() => {
+      this.calculateItemsChecked();
+    });
   }
 
-  showDetail(item) {
-    let modal = this.modalCtrl.create(DetailsPage, {item: item});
+  showItemDetail(item) {
+    let modal = this.modalCtrl.create(ItemDetailsPage, {item: item});
     modal.present();
   }
 
-  calculateItemsChecked(item?) {
-    let itemCopy = Object.assign({}, item);
+  showCategoryDetail(category) {
+    let modal = this.modalCtrl.create(CategoryDetailsPage, {category: category});
+    modal.present();
+  }
+
+  calculateItemsChecked() {
     let counter = 0;
-    for (let item of this.items) {
-      if (itemCopy._id === item._id) {
-        item.checked = itemCopy.checked; // wtf
-      }
-      if (item.checked === true) {
-        counter++;
+    if (this.items) {
+      for (let item of this.items) {
+        if (item.checked === true) {
+          counter++;
+        }
       }
     }
-
     this.itemsChecked = counter;
   }
 }

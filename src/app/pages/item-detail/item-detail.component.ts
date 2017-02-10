@@ -1,14 +1,14 @@
-import {Component, NgZone} from '@angular/core';
+import {Component} from '@angular/core';
 import {NavParams, ViewController} from 'ionic-angular';
-import {ItemsService} from '../../items/items-list/items-list.service';
-import {TranslateService} from "ng2-translate";
+import {ItemsService} from '../../shared/services/items.service';
+import {CategoriesService} from '../../shared/services/categories.service';
 
 @Component({
   selector: 'page-item-detail',
   templateUrl: 'item-detail.component.html'
 })
 
-export class DetailsPage {
+export class ItemDetailsPage {
   public categories = [];
   public item: any = {};
   public isNew = true;
@@ -16,15 +16,12 @@ export class DetailsPage {
 
   constructor(private viewCtrl: ViewController,
               private navParams: NavParams,
-              private zone: NgZone,
-              private itemsService: ItemsService,
-              private translateService: TranslateService) {
+              private categoriesService: CategoriesService,
+              private itemsService: ItemsService) {
 
-    this.itemsService.getAllCategories()
-      .then(data => {
-        this.zone.run(() => {
-          this.categories = data;
-        });
+    this.categoriesService.getAll()
+      .then(categories => {
+        this.categories = categories;
       });
 
     let editItem = this.navParams.get('item');
@@ -34,34 +31,41 @@ export class DetailsPage {
       this.isNew = false;
       this.action = 'edit';
     }
-
-    this.translateService.get(this.item.id).subscribe((text: string) => {
-      this.item.id = text;
-    })
   }
 
-  save() {
+  categorySelected(categoryId) {
+    this.item.categoryId = categoryId;
+  }
+
+  save(name) {
+    let oldItem = Object.assign({}, this.item);
+    this.item.id = name;
+
     if (this.isNew) {
-      this.itemsService.addItem(this.item)
-        .catch(console.error.bind(console));
+      this.itemsService.addItem(this.item).then(() => {
+        this.dismiss();
+      });
     } else {
-      this.itemsService.updateItem(this.item);
+      this.itemsService.deleteItem(oldItem).then(() => {
+        this.itemsService.addItem(this.item).then(() => {
+          this.dismiss();
+        });
+      });
     }
-
-    this.dismiss();
-  }
-
-  cancel() {
-    this.dismiss();
   }
 
   deleteItem() {
-    this.itemsService.deleteItem(this.item);
+    this.itemsService.deleteItem(this.item).then(() => {
+      this.dismiss();
+    });
+  }
 
-    this.dismiss();
+  cancel() {
+    this.viewCtrl.dismiss();
   }
 
   dismiss() {
-    this.viewCtrl.dismiss(this.item);
+    this.viewCtrl.dismiss().then(() => {
+    });
   }
 }

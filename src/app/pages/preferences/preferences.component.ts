@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {TranslateService} from "ng2-translate";
-import {ItemsService} from "../../items/items-list/items-list.service";
+import {ItemsService} from "../../shared/services/items.service";
 
 @Component({
   selector: 'page-preferences',
@@ -12,7 +12,7 @@ export class PreferencesPage {
   private translateService: TranslateService;
 
   constructor(translateService: TranslateService,
-  private itemsService: ItemsService) {
+              private itemsService: ItemsService) {
     this.translateService = translateService;
   }
 
@@ -21,7 +21,7 @@ export class PreferencesPage {
   }
 
   resetDB(): void {
-    this.itemsService.resetDB();
+    this.itemsService.removeAll();
   }
 
 }

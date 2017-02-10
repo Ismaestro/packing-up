@@ -13,17 +13,16 @@
   <ion-list>
     <ion-item>
       <ion-label>{{'selectCategory' | translate}}</ion-label>
-      <ion-select [(ngModel)]="item.categoryId">
-        <ion-option *ngFor="let category of categories" value="{{category.id}}">{{category.id | translate}}</ion-option>
+      <ion-select [ngModel]="item.categoryId" (ionChange)="categorySelected($event, festId)">
+        <ion-option *ngFor="let category of categories; let idx = index" [value]="category.id">{{category.id | translate}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>{{'name' | translate}}</ion-label>
-      <ion-input text-right type="text"
-                 [(ngModel)]="item.id"></ion-input>
+      <ion-input #name text-right type="text" value="{{item.id | translate}}"></ion-input>
     </ion-item>
   </ion-list>
-  <button ion-button block (click)="save()">
+  <button ion-button block (click)="save(name.value)">
     {{'save' | translate}}
   </button>
   <button ion-button block color="light"

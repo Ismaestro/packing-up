@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ action | translate}} {{'category' | translate}}</ion-title>
+    <ion-buttons end *ngIf="!isNew">
+      <button ion-button (click)="deleteCategory()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{'name' | translate}}</ion-label>
+      <ion-input text-right type="text" #name value="{{category.id | translate}}"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button block (click)="save(name.value)">
+    {{'save' | translate}}
+  </button>
+  <button ion-button block color="light"
+          (click)="cancel()">
+    {{'cancel' | translate}}
+  </button>
+</ion-content>
