@@ -10,6 +10,7 @@ import {CategoriesService} from '../../shared/services/categories.service';
 
 export class ItemDetailsPage {
   public categories = [];
+  public items;
   public item: any = {};
   public isNew = true;
   public action = 'add';
@@ -18,7 +19,6 @@ export class ItemDetailsPage {
               private navParams: NavParams,
               private categoriesService: CategoriesService,
               private itemsService: ItemsService) {
-
     this.categoriesService.getAll()
       .then(categories => {
         this.categories = categories;
@@ -38,7 +38,7 @@ export class ItemDetailsPage {
   }
 
   save(name) {
-    let oldItem = Object.assign({}, this.item);
+    let oldId = this.item.id;
     this.item.id = name;
 
     if (this.isNew) {
@@ -46,10 +46,8 @@ export class ItemDetailsPage {
         this.dismiss();
       });
     } else {
-      this.itemsService.deleteItem(oldItem).then(() => {
-        this.itemsService.addItem(this.item).then(() => {
-          this.dismiss();
-        });
+      this.itemsService.updateItem(oldId, this.item).then(() => {
+        this.dismiss();
       });
     }
   }

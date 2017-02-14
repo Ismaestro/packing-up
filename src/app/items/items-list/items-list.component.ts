@@ -17,6 +17,12 @@ export class ItemsList {
   constructor(private categoriesService: CategoriesService,
               private itemsService: ItemsService,
               private modalCtrl: ModalController) {
+    this.itemsService.refreshList$.subscribe(
+      items => this.refreshItemsList(items));
+
+    this.categoriesService.refreshList$.subscribe(
+      categories => this.refreshCategoriesList(categories));
+
     this.loadCategories();
     this.loadItems();
   }
@@ -37,13 +43,13 @@ export class ItemsList {
   }
 
   itemChanged(item) {
-    this.itemsService.updateItem(item).then(() => {
+    this.itemsService.updateItem(item.id, item).then(() => {
       this.calculateItemsChecked();
     });
   }
 
   showItemDetail(item) {
-    let modal = this.modalCtrl.create(ItemDetailsPage, {item: item});
+    let modal = this.modalCtrl.create(ItemDetailsPage, {item: item, items: this.items});
     modal.present();
   }
 
@@ -62,5 +68,13 @@ export class ItemsList {
       }
     }
     this.itemsChecked = counter;
+  }
+
+  private refreshItemsList(items: any): void {
+    this.items = items;
+  }
+
+  private refreshCategoriesList(categories: any): void {
+    this.categories = categories;
   }
 }

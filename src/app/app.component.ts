@@ -21,11 +21,10 @@ export class MyApp {
 
     storage.get('storageLoaded').then((storageLoaded) => {
       if (!storageLoaded) {
-        this.loadInitData().then(() => {
-          storage.set('storageLoaded', 'true').then(() => {
-            location.reload();
-          });
-        })
+        this.loadInitData();
+        storage.set('storageLoaded', 'true').then(() => {
+          location.reload();
+        });
       }
     });
 
@@ -36,9 +35,8 @@ export class MyApp {
   }
 
   loadInitData() {
-    return this.loadCategories().then(() => {
-      return this.loadItems();
-    });
+    this.loadCategories();
+    this.loadItems();
   }
 
   loadCategories() {
@@ -54,7 +52,7 @@ export class MyApp {
       {id: 'other'}
     ];
 
-    return this.storage.set('categories', categories);
+    this.storage.set('categories', categories);
   }
 
   loadItems() {
@@ -174,8 +172,7 @@ export class MyApp {
       {id: "water", categoryId: 'other'},
       {id: "travel_pillow", categoryId: 'other'}
     ];
-
-    return this.storage.set('items', items);
+    this.storage.set('items', items);
   }
 
 }

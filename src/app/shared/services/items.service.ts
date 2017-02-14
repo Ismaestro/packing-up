@@ -1,10 +1,13 @@
-import {Injectable} from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Storage} from '@ionic/storage';
 
 @Injectable()
 export class ItemsService {
 
+  public refreshList$: EventEmitter<any>;
+
   constructor(private storage: Storage) {
+    this.refreshList$ = new EventEmitter();
   }
 
   getAll() {
@@ -14,33 +17,33 @@ export class ItemsService {
   addItem(item) {
     return this.storage.get('items').then((items) => {
       items.push(item);
+      this.refreshList$.emit(items);
       return this.storage.set('items', items);
     });
   }
 
-  updateItem(newItem) {
+  updateItem(id, item) {
     return this.storage.get('items').then((items) => {
       for (let i = 0; i < items.length; i++) {
-        if (items[i].id === newItem.id) {
-          items[i] = newItem;
+        if (items[i].id === id) {
+          items[i] = item;
         }
       }
 
+      this.refreshList$.emit(items);
       return this.storage.set('items', items);
     });
   }
 
-  deleteItem(itemToRemove) {
+  deleteItem(item) {
     return this.storage.get('items').then((items) => {
-      console.log(items.length);
-
       for (let i = 0; i < items.length; i++) {
-        if (items[i].id === itemToRemove.id) {
+        if (items[i].id === item.id) {
           items.splice(i,1);
         }
       }
 
-      console.log(items.length);
+      this.refreshList$.emit(items);
       return this.storage.set('items', items);
     });
   }

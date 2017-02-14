@@ -1,10 +1,13 @@
-import {Injectable} from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Storage} from '@ionic/storage';
 
 @Injectable()
 export class CategoriesService {
 
+  public refreshList$: EventEmitter<any>;
+
   constructor(private storage: Storage) {
+    this.refreshList$ = new EventEmitter();
   }
 
   getAll() {
@@ -12,27 +15,36 @@ export class CategoriesService {
   }
 
   addCategory(category) {
-    return this.storage.get('categories').then((category) => {
-      category.push(category);
-      return this.storage.set('categories', category);
-    });
-  }
-
-  updateCategory(newCategory) {
     return this.storage.get('categories').then((categories) => {
-      for (let category of categories) {
-        if (category.id === newCategory.id) {
-          category = newCategory;
-        }
-      }
+      categories.push(category);
+      this.refreshList$.emit(categories);
       return this.storage.set('categories', categories);
     });
   }
 
-  deleteCategory(categoryToRemove) {
-    return this.storage.get('categories').then((category) => {
-      category = category.filter(category => category.id !== categoryToRemove.id);
-      return this.storage.set('categories', category);
+  updateCategory(id, category) {
+    return this.storage.get('categories').then((categories) => {
+      for (let i = 0; i < categories.length; i++) {
+        if (categories[i].id === id) {
+          categories[i] = category;
+        }
+      }
+
+      this.refreshList$.emit(categories);
+      return this.storage.set('categories', categories);
+    });
+  }
+
+  deleteCategory(category) {
+    return this.storage.get('categories').then((categories) => {
+      for (let i = 0; i < categories.length; i++) {
+        if (categories[i].id === category.id) {
+          categories.splice(i,1);
+        }
+      }
+
+      this.refreshList$.emit(categories);
+      return this.storage.set('categories', categories);
     });
   }
 

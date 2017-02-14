@@ -26,13 +26,15 @@ export class CategoryDetailsPage {
   }
 
   save(name) {
+    let oldId = this.category.id;
     this.category.id = name;
+
     if (this.isNew) {
       this.categoriesService.addCategory(this.category).then(() => {
         this.dismiss();
       });
     } else {
-      this.categoriesService.updateCategory(this.category).then(() => {
+      this.categoriesService.updateCategory(oldId, this.category).then(() => {
         this.dismiss();
       });
     }
