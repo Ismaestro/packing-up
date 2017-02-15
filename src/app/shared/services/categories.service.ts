@@ -49,14 +49,25 @@ export class CategoriesService {
 
   deleteCategory(category) {
     return this.storage.get('categories').then((categories) => {
-      for (let i = 0; i < categories.length; i++) {
-        if (categories[i].id === category.id) {
-          categories.splice(i,1);
+      return this.storage.get('items').then((items) => {
+        for (let i = 0; i < categories.length; i++) {
+          if (categories[i].id === category.id) {
+            categories.splice(i, 1);
+          }
         }
-      }
 
-      this.refreshList$.emit(categories);
-      return this.storage.set('categories', categories);
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].categoryId === category.id) {
+            delete items[i];
+          }
+        }
+
+        return this.storage.set('items', items).then(() => {
+          this.itemsService.refreshList$.emit(items);
+          this.refreshList$.emit(categories);
+          return this.storage.set('categories', categories);
+        });
+      });
     });
   }
 

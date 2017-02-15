@@ -23,7 +23,6 @@ export class ItemsService {
   }
 
   updateItem(id, item, notify?) {
-    console.log("ENTRO");
     return this.storage.get('items').then((items) => {
       for (let i = 0; i < items.length; i++) {
         if (items[i].id === id) {
