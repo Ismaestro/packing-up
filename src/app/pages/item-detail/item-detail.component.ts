@@ -46,7 +46,7 @@ export class ItemDetailsPage {
         this.dismiss();
       });
     } else {
-      this.itemsService.updateItem(oldId, this.item).then(() => {
+      this.itemsService.updateItem(oldId, this.item, true).then(() => {
         this.dismiss();
       });
     }

@@ -22,7 +22,8 @@ export class ItemsService {
     });
   }
 
-  updateItem(id, item) {
+  updateItem(id, item, notify?) {
+    console.log("ENTRO");
     return this.storage.get('items').then((items) => {
       for (let i = 0; i < items.length; i++) {
         if (items[i].id === id) {
@@ -30,7 +31,10 @@ export class ItemsService {
         }
       }
 
-      this.refreshList$.emit(items);
+      if (notify) {
+        this.refreshList$.emit(items);
+      }
+
       return this.storage.set('items', items);
     });
   }

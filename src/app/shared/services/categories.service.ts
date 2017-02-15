@@ -1,12 +1,13 @@
 import {Injectable, EventEmitter} from '@angular/core';
 import {Storage} from '@ionic/storage';
+import {ItemsService} from "./items.service";
 
 @Injectable()
 export class CategoriesService {
 
   public refreshList$: EventEmitter<any>;
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private itemsService: ItemsService) {
     this.refreshList$ = new EventEmitter();
   }
 
@@ -24,14 +25,25 @@ export class CategoriesService {
 
   updateCategory(id, category) {
     return this.storage.get('categories').then((categories) => {
-      for (let i = 0; i < categories.length; i++) {
-        if (categories[i].id === id) {
-          categories[i] = category;
+      return this.storage.get('items').then((items) => {
+        for (let i = 0; i < categories.length; i++) {
+          if (categories[i].id === id) {
+            categories[i] = category;
+          }
         }
-      }
 
-      this.refreshList$.emit(categories);
-      return this.storage.set('categories', categories);
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].categoryId === id) {
+            items[i].categoryId = category.id;
+          }
+        }
+
+        return this.storage.set('items', items).then(() => {
+          this.itemsService.refreshList$.emit(items);
+          this.refreshList$.emit(categories);
+          return this.storage.set('categories', categories);
+        });
+      });
     });
   }
 

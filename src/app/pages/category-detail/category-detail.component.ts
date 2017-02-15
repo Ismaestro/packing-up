@@ -47,12 +47,10 @@ export class CategoryDetailsPage {
   }
 
   cancel() {
-    this.viewCtrl.dismiss();
+    this.dismiss();
   }
 
   dismiss() {
-    this.viewCtrl.dismiss().then(() => {
-      location.reload();
-    });
+    this.viewCtrl.dismiss();
   }
 }
