@@ -72,9 +72,11 @@ export class ItemsList {
 
   private refreshItemsList(items: any): void {
     this.items = items;
+    this.calculateItemsChecked();
   }
 
   private refreshCategoriesList(categories: any): void {
     this.categories = categories;
+    this.calculateItemsChecked();
   }
 }

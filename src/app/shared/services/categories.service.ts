@@ -62,6 +62,8 @@ export class CategoriesService {
           }
         }
 
+        items = this.cleanArray(items);
+
         return this.storage.set('items', items).then(() => {
           this.itemsService.refreshList$.emit(items);
           this.refreshList$.emit(categories);
@@ -74,5 +76,15 @@ export class CategoriesService {
   removeAll() {
     return this.storage.remove('categories');
   }
+
+  private cleanArray(actual) {
+  let newArray = [];
+  for (let i = 0; i < actual.length; i++) {
+    if (actual[i]) {
+      newArray.push(actual[i]);
+    }
+  }
+  return newArray;
+}
 
 }
