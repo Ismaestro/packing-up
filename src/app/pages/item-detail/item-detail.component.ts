@@ -30,6 +30,8 @@ export class ItemDetailsPage {
       this.item = editItem;
       this.isNew = false;
       this.action = 'edit';
+    } else {
+      this.item = {};
     }
   }
 

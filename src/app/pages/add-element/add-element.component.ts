@@ -15,13 +15,13 @@ export class AddElementPage {
 
   newCategory() {
     this.dismiss();
-    let modal = this.modalCtrl.create(CategoryDetailsPage, {category: {}});
+    let modal = this.modalCtrl.create(CategoryDetailsPage);
     modal.present();
   }
 
   newItem() {
     this.dismiss();
-    let modal = this.modalCtrl.create(ItemDetailsPage, {item: {}});
+    let modal = this.modalCtrl.create(ItemDetailsPage);
     modal.present();
   }
 

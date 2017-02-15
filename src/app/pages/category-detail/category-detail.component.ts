@@ -22,6 +22,8 @@ export class CategoryDetailsPage {
       this.category = editCategory;
       this.isNew = false;
       this.action = 'edit';
+    } else {
+      this.category = {};
     }
   }
 
