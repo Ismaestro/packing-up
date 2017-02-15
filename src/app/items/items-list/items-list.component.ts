@@ -37,7 +37,11 @@ export class ItemsList {
   loadItems() {
     this.itemsService.getAll()
       .then(items => {
-        this.items = items;
+        this.items = items.sort(function(a, b){
+          if(a.id < b.id) return -1;
+          if(a.id > b.id) return 1;
+          return 0;
+        });
         this.calculateItemsChecked();
       });
   }
