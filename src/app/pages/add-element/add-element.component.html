@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{'newElement' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="modal-content">
+    <button ion-button class="action-button" (click)="newCategory()">
+      {{'category' | translate}}
+    </button>
+    <br>
+    <button ion-button class="action-button" (click)="newItem()">
+      {{'item' | translate}}
+    </button>
+    <br>
+    <button ion-button color="light" (click)="cancel()">
+      {{'cancel' | translate}}
+    </button>
+  </div>
+</ion-content>

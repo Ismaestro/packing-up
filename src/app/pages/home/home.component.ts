@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {ModalController, NavController} from 'ionic-angular';
-import {ItemDetailsPage} from '../item-detail/item-detail.component';
+import {ModalController} from 'ionic-angular';
+import {AddElementPage} from "../add-element/add-element.component";
 
 @Component({
   selector: 'page-home',
@@ -9,12 +9,11 @@ import {ItemDetailsPage} from '../item-detail/item-detail.component';
 
 export class HomePage {
 
-  constructor(private nav: NavController,
-              private modalCtrl: ModalController) {
+  constructor(private modalCtrl: ModalController) {
   }
 
-  showDetail(item) {
-    let modal = this.modalCtrl.create(ItemDetailsPage, {item: item});
+  showAddElement() {
+    let modal = this.modalCtrl.create(AddElementPage);
     modal.present();
   }
 }
