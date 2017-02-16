@@ -3,7 +3,8 @@
   <ion-item-group *ngFor="let category of categories | orderAlphabetically">
     <ion-item-divider color="light"
                       (press)="showCategoryDetail(category)">
-      {{category.id | translate}}
+      <span>{{category.id | translate}}</span>
+      <span>{{getNumberItemsCheckedPerCategory(category)}} / {{getNumberItemsPerCategory(category)}}</span>
     </ion-item-divider>
     <ion-item *ngFor="let item of items | orderAlphabetically | filterCategory : 'categoryId' : category.id"
               (press)="showItemDetail(item)">

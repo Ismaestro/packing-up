@@ -1,5 +1,9 @@
 progress-bar {
 
+  .completed {
+    background-color: limegreen !important;
+  }
+
   .progress-outer {
     width: 96%;
     margin: 10px 2%;
@@ -12,7 +16,7 @@ progress-bar {
   }
 
   .progress-inner {
-    min-width: 2%;
+    min-width: 5%;
     white-space: nowrap;
     overflow: hidden;
     padding: 5px;

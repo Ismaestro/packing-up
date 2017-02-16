@@ -70,6 +70,28 @@ export class ItemsList {
     this.itemsChecked = counter;
   }
 
+  getNumberItemsCheckedPerCategory(category) {
+    let counter = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].categoryId === category.id && this.items[i].checked) {
+        counter++;
+      }
+    }
+
+    return counter;
+  }
+
+  getNumberItemsPerCategory(category) {
+    let counter = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].categoryId === category.id) {
+        counter++;
+      }
+    }
+
+    return counter;
+  }
+
   private refreshItemsList(items: any): void {
     this.items = items;
     this.calculateItemsChecked();
