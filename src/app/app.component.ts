@@ -41,15 +41,15 @@ export class MyApp {
 
   loadCategories() {
     let categories = [
-      {id: 'documentation'},
-      {id: 'clothes'},
-      {id: 'dressing_case'},
-      {id: 'media'},
-      {id: 'mountain'},
-      {id: 'beach'},
-      {id: 'work'},
-      {id: 'kit'},
-      {id: 'other'}
+      {id: 'documentation', hide: true},
+      {id: 'clothes', hide: true},
+      {id: 'dressing_case', hide: true},
+      {id: 'media', hide: true},
+      {id: 'mountain', hide: true},
+      {id: 'beach', hide: true},
+      {id: 'work', hide: true},
+      {id: 'kit', hide: true},
+      {id: 'other', hide: true}
     ];
 
     this.storage.set('categories', categories);

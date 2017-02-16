@@ -2,20 +2,23 @@
   <progress-bar [progress]="itemsChecked" [total]="items.length"></progress-bar>
   <ion-item-group *ngFor="let category of categories | orderAlphabetically">
     <ion-item-divider color="light"
+                      (click)="toggleCategory(category)"
                       (press)="showCategoryDetail(category)">
       <span>{{category.id | translate}}</span>
-      <span>{{getNumberItemsCheckedPerCategory(category)}} / {{getNumberItemsPerCategory(category)}}</span>
+      <span class="float-right">{{getNumberItemsCheckedPerCategory(category)}} / {{getNumberItemsPerCategory(category)}}</span>
     </ion-item-divider>
-    <ion-item *ngFor="let item of items | orderAlphabetically | filterCategory : 'categoryId' : category.id"
-              (press)="showItemDetail(item)">
-      <ion-checkbox item-left
-                    [(ngModel)]="item.checked"
-                    (ionChange)="itemChanged(item)">
-      </ion-checkbox>
-      <ion-label tappable>
-        {{item.id | translate}}
-      </ion-label>
-    </ion-item>
+    <div id="items-{{category.id}}" [hidden]="category.hide">
+      <ion-item *ngFor="let item of items | orderAlphabetically | filterCategory : 'categoryId' : category.id"
+                (press)="showItemDetail(item)">
+        <ion-checkbox item-left
+                      [(ngModel)]="item.checked"
+                      (ionChange)="itemChanged(item)">
+        </ion-checkbox>
+        <ion-label tappable>
+          {{item.id | translate}}
+        </ion-label>
+      </ion-item>
+    </div>
   </ion-item-group>
 </ion-content>
 <ion-content *ngIf="items.length === 0">

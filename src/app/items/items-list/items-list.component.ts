@@ -92,6 +92,11 @@ export class ItemsList {
     return counter;
   }
 
+  toggleCategory(category) {
+    category.hide = !category.hide;
+    this.categoriesService.updateCategory(category.id, category);
+  }
+
   private refreshItemsList(items: any): void {
     this.items = items;
     this.calculateItemsChecked();
