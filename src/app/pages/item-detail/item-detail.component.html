@@ -13,8 +13,10 @@
   <ion-list>
     <ion-item>
       <ion-label>{{'selectCategory' | translate}}</ion-label>
-      <ion-select [ngModel]="item.categoryId" (ionChange)="categorySelected($event, festId)">
-        <ion-option *ngFor="let category of categories; let idx = index" [value]="category.id">{{category.id | translate}}</ion-option>
+      <ion-select [ngModel]="item.categoryId" (ionChange)="categorySelected($event)">
+        <ion-option *ngFor="let category of categories" [value]="category.id">
+          {{category.id | translate}}
+        </ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
