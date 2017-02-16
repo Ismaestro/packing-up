@@ -1,11 +1,11 @@
 <ion-content *ngIf="items.length !== 0">
   <progress-bar [progress]="itemsChecked" [total]="items.length"></progress-bar>
-  <ion-item-group *ngFor="let category of categories">
+  <ion-item-group *ngFor="let category of categories | orderAlphabetically">
     <ion-item-divider color="light"
                       (press)="showCategoryDetail(category)">
       {{category.id | translate}}
     </ion-item-divider>
-    <ion-item *ngFor="let item of items | filter : 'categoryId' : category.id"
+    <ion-item *ngFor="let item of items | orderAlphabetically | filterCategory : 'categoryId' : category.id"
               (press)="showItemDetail(item)">
       <ion-checkbox item-left
                     [(ngModel)]="item.checked"

@@ -17,6 +17,7 @@ import {TranslateLoaderFactory} from './app.translate.factory';
 import {CategoryDetailsPage} from "./pages/category-detail/category-detail.component";
 import {Storage} from '@ionic/storage';
 import {AddElementPage} from "./pages/add-element/add-element.component";
+import {OrderAlphabeticallyPipe} from "./shared/pipes/order-alphabetically.pipe";
 
 export function provideStorage() {
   return new Storage(['sqlite', 'websql', 'indexeddb'], {name: '__mydb'});
@@ -34,7 +35,8 @@ export function provideStorage() {
     ItemDetailsPage,
     ItemsList,
     CategoriesPipe,
-    ProgressBarComponent
+    ProgressBarComponent,
+    OrderAlphabeticallyPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp),
