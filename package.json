@@ -1,7 +1,7 @@
 {
-  "name": "packingUp",
+  "name": "PackingUp",
   "author": "Ismael Ramos <ramossilvanismael@gmail.com>",
-  "homepage": "http://ionicframework.com/",
+  "homepage": "https://play.google.com/store/apps/details?id=com.ismaestro.packingup",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",

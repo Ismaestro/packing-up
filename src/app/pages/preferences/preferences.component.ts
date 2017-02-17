@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
-import { AppRate } from 'ionic-native';
+import {Market} from 'ionic-native';
 import {TranslateService} from "ng2-translate";
 import {ItemsService} from "../../shared/services/items.service";
 import {CategoriesService} from "../../shared/services/categories.service";
@@ -14,7 +14,6 @@ import {AlertController} from "ionic-angular";
 export class PreferencesPage {
 
   private translateService: TranslateService;
-  private texts: Array<string>;
 
   constructor(translateService: TranslateService,
               private categoriesService: CategoriesService,
@@ -22,21 +21,10 @@ export class PreferencesPage {
               private storage: Storage,
               public alertCtrl: AlertController) {
     this.translateService = translateService;
-    this.translateService.get(['areYouSure', 'resetListInfo', 'accept', 'cancel'],{}).subscribe((texts) => {
-      this.texts = texts;
-    });
+  }
 
-    AppRate.preferences = {
-      openStoreInApp: true,
-      displayAppName: 'Packing up',
-      usesUntilPrompt: 2,
-      promptAgainForEachNewVersion: true,
-      storeAppURL: {
-        android: 'market://details?id=packingup.core.activities',
-      },
-      useLanguage: this.translateService.getBrowserLang()
-    };
-
+  rateApp() {
+    Market.open('com.ismaestro.packingup');
   }
 
   setLanguage(language: string): void {
@@ -44,24 +32,26 @@ export class PreferencesPage {
   }
 
   showConfirm() {
-    let confirm = this.alertCtrl.create({
-      title: this.texts['areYouSure'],
-      message: this.texts['resetListInfo'],
-      buttons: [
-        {
-          text: this.texts['cancel'],
-          handler: () => {
+    this.translateService.get(['areYouSure', 'resetListInfo', 'accept', 'cancel'], {}).subscribe((texts) => {
+      let confirm = this.alertCtrl.create({
+        title: texts['areYouSure'],
+        message: texts['resetListInfo'],
+        buttons: [
+          {
+            text: texts['cancel'],
+            handler: () => {
+            }
+          },
+          {
+            text: texts['accept'],
+            handler: () => {
+              this.resetDB();
+            }
           }
-        },
-        {
-          text: this.texts['accept'],
-          handler: () => {
-            this.resetDB();
-          }
-        }
-      ]
+        ]
+      });
+      confirm.present();
     });
-    confirm.present();
   }
 
   resetDB(): void {
@@ -72,10 +62,6 @@ export class PreferencesPage {
         });
       });
     });
-  }
-
-  rateApp(){
-    AppRate.promptForRating(true);
   }
 
 }
