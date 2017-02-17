@@ -113,7 +113,6 @@ export class MyApp {
       {id: "binoculars", categoryId: 'mountain'},
       {id: "rope", categoryId: 'mountain'},
       {id: "whistle", categoryId: 'mountain'},
-      {id: "food_tools", categoryId: 'mountain'},
       {id: "pencil_and_paper", categoryId: 'mountain'},
       {id: "sleeping_bag", categoryId: 'mountain'},
       {id: "swiss_knife", categoryId: 'mountain'},
