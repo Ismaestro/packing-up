@@ -17,7 +17,7 @@
   "selectCategory": "Selecciona una categoría",
   "add": "Añadir",
   "edit": "Editar",
-  "resetList": "Resetear la lista de viaje",
+  "resetList": "Resetear la lista",
   "reset": "Resetear",
   "documentation": "Documentación",
   "clothes": "Ropa",
@@ -142,5 +142,7 @@
   "shoes_insoles": "Plantillas de calzado",
   "water": "Agua",
   "travel_pillow": "Almohada de viaje",
-  "newElement": "Nuevo elemento"
+  "newElement": "Nuevo elemento",
+  "rateApp": "Valorar aplicación",
+  "actions": "Acciones"
 }

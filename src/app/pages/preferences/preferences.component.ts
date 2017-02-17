@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
+import { AppRate } from 'ionic-native';
 import {TranslateService} from "ng2-translate";
 import {ItemsService} from "../../shared/services/items.service";
 import {CategoriesService} from "../../shared/services/categories.service";
@@ -18,6 +19,18 @@ export class PreferencesPage {
               private itemsService: ItemsService,
               private storage: Storage) {
     this.translateService = translateService;
+
+    AppRate.preferences = {
+      openStoreInApp: true,
+      displayAppName: 'Packing up',
+      usesUntilPrompt: 2,
+      promptAgainForEachNewVersion: true,
+      storeAppURL: {
+        android: 'market://details?id=packingup.core.activities',
+      },
+      useLanguage: this.translateService.getBrowserLang()
+    };
+
   }
 
   setLanguage(language: string): void {
@@ -32,6 +45,10 @@ export class PreferencesPage {
         });
       });
     });
+  }
+
+  rateApp(){
+    AppRate.promptForRating(true);
   }
 
 }
