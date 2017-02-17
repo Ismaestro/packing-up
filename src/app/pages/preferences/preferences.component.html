@@ -8,9 +8,19 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-label>{{'languages' | translate}}</ion-label>
-  <button ion-button color="light" (click)="setLanguage('en')">{{'english' | translate}}</button><br>
-  <button ion-button color="light" (click)="setLanguage('es')">{{'spanish' | translate}}</button>
+  <ion-list radio-group>
+    <ion-list-header>
+      {{'languages' | translate}}
+    </ion-list-header>
+    <ion-item>
+      <ion-label>{{'english' | translate}}</ion-label>
+      <ion-radio (click)="setLanguage('en')" value="en"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'spanish' | translate}}</ion-label>
+      <ion-radio (click)="setLanguage('es')" value="es"></ion-radio>
+    </ion-item>
+  </ion-list>
   <br>
   <br>
   <ion-label>{{'actions' | translate}}</ion-label>
