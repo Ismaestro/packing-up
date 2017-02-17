@@ -2,9 +2,9 @@
 
 ### What is this repository for? ###
 
-* Build an app to make a list of things you have to carry on in any trip
+* Build an app to make a list of things you have to carry on in your travels
 
-### How do I get set up? ###
+### Set up? ###
 
 Ionic 2 app. Just run:
 
