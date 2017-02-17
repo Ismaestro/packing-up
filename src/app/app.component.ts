@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Platform} from 'ionic-angular';
-import {StatusBar, Splashscreen} from 'ionic-native';
+import {StatusBar, Splashscreen, GoogleAnalytics} from 'ionic-native';
 import {Storage} from '@ionic/storage';
 
 import {TabsPage} from './pages/tabs/tabs.component';
@@ -31,6 +31,12 @@ export class MyApp {
     platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
+
+      GoogleAnalytics.startTrackerWithId('UA-92160899-1')
+        .then(() => {
+          console.log('Google analytics is ready now');
+        })
+        .catch(e => console.log('Error starting GoogleAnalytics', e));
     });
   }
 
