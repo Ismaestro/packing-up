@@ -1,23 +1,32 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{'contactUs' | translate}}
+      <ion-icon name="information-circle"></ion-icon>
+      {{'contact' | translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <ion-label class="text-center">{{'sendFeedback' | translate}}</ion-label>
   <ion-list>
-    <ion-list-header>{{'sendFeedback' | translate}}</ion-list-header>
     <ion-item>
       <ion-icon name="logo-twitter" item-left></ion-icon>
-      @ismaestro
-    </ion-item>
-    <ion-item>
-      <ion-icon name="logo-github" item-left></ion-icon>
       <a class="item" href="#"
          onclick="window.open('https://github.com/Ismaestro/Packing-Up', '_system', 'location=yes'); return false;">
-        Github
+        GitHub
+      </a>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail" item-left></ion-icon>
+      <a class="item" href="mailto:ramossilvanismael@gmail.com">
+        Email
+      </a>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="thumbs-up" item-left></ion-icon>
+      <a class="item" href="https://play.google.com/store/apps/details?id=packingup.core.activities">
+        Google Play
       </a>
     </ion-item>
   </ion-list>
