@@ -4,6 +4,7 @@ import { AppRate } from 'ionic-native';
 import {TranslateService} from "ng2-translate";
 import {ItemsService} from "../../shared/services/items.service";
 import {CategoriesService} from "../../shared/services/categories.service";
+import {AlertController} from "ionic-angular";
 
 @Component({
   selector: 'page-preferences',
@@ -13,12 +14,17 @@ import {CategoriesService} from "../../shared/services/categories.service";
 export class PreferencesPage {
 
   private translateService: TranslateService;
+  private texts: Array<string>;
 
   constructor(translateService: TranslateService,
               private categoriesService: CategoriesService,
               private itemsService: ItemsService,
-              private storage: Storage) {
+              private storage: Storage,
+              public alertCtrl: AlertController) {
     this.translateService = translateService;
+    this.translateService.get(['areYouSure', 'resetListInfo', 'accept', 'cancel'],{}).subscribe((texts) => {
+      this.texts = texts;
+    });
 
     AppRate.preferences = {
       openStoreInApp: true,
@@ -35,6 +41,27 @@ export class PreferencesPage {
 
   setLanguage(language: string): void {
     this.translateService.use(language);
+  }
+
+  showConfirm() {
+    let confirm = this.alertCtrl.create({
+      title: this.texts['areYouSure'],
+      message: this.texts['resetListInfo'],
+      buttons: [
+        {
+          text: this.texts['cancel'],
+          handler: () => {
+          }
+        },
+        {
+          text: this.texts['accept'],
+          handler: () => {
+            this.resetDB();
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   resetDB(): void {

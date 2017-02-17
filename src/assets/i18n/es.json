@@ -143,5 +143,8 @@
   "travel_pillow": "Almohada de viaje",
   "newElement": "Nuevo elemento",
   "rateApp": "Valorar aplicación",
-  "actions": "Acciones"
+  "actions": "Acciones",
+  "areYouSure": "¿Estás seguro?",
+  "resetListInfo": "Vas a restablecer la lista de viaje a su estado inicial.",
+  "accept": "Aceptar"
 }

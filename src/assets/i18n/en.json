@@ -143,5 +143,8 @@
   "travel_pillow": "Travel pillow",
   "newElement": "New element",
   "rateApp": "Rate this app",
-  "actions": "Actions"
+  "actions": "Actions",
+  "areYouSure": "Are you sure?",
+  "resetListInfo": "You are going to restore the travel list to the initial state",
+  "accept": "Accept"
 }
