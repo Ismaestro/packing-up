@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Platform} from 'ionic-angular';
+import {Platform, LoadingController, Loading} from 'ionic-angular';
 import {StatusBar, Splashscreen, GoogleAnalytics} from 'ionic-native';
 import {Storage} from '@ionic/storage';
 
@@ -12,9 +12,15 @@ import {TranslateService} from "ng2-translate";
 
 export class MyApp {
   rootPage = TabsPage;
+  loading: Loading;
 
-  constructor(platform: Platform, private translateService: TranslateService,
+  constructor(public loadingCtrl: LoadingController, platform: Platform, private translateService: TranslateService,
               private storage: Storage) {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+
     this.translateService = translateService;
     this.translateService.setDefaultLang('en');
     this.translateService.use(this.translateService.getBrowserLang());
@@ -25,6 +31,8 @@ export class MyApp {
         storage.set('storageLoaded', 'true').then(() => {
           location.reload();
         });
+      } else {
+        this.loading.dismiss();
       }
     });
 
@@ -42,7 +50,6 @@ export class MyApp {
 
   loadInitData() {
     this.loadCategories();
-    this.loadItems();
   }
 
   loadCategories() {
@@ -58,7 +65,9 @@ export class MyApp {
       {id: 'other', hide: true}
     ];
 
-    this.storage.set('categories', categories);
+    this.storage.set('categories', categories).then(() => {
+      this.loadItems();
+    });
   }
 
   loadItems() {
@@ -177,7 +186,9 @@ export class MyApp {
       {id: "water", categoryId: 'other'},
       {id: "travel_pillow", categoryId: 'other'}
     ];
-    this.storage.set('items', items);
+    this.storage.set('items', items).then().then(() => {
+      this.loading.dismiss();
+    });
   }
 
 }

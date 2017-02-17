@@ -1,4 +1,4 @@
-<ion-content *ngIf="items.length !== 0">
+<ion-content *ngIf="items && items.length !== 0">
   <progress-bar [progress]="itemsChecked" [total]="items.length"></progress-bar>
   <ion-item-group *ngFor="let category of categories | orderAlphabetically">
     <ion-item-divider color="light"
@@ -21,7 +21,7 @@
     </div>
   </ion-item-group>
 </ion-content>
-<ion-content *ngIf="items.length === 0">
+<ion-content *ngIf="items && items.length === 0">
   <ion-label class="text-center">
     {{'loading' | translate}}
   </ion-label>
