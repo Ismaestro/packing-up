@@ -13,6 +13,7 @@ import {AlertController} from "ionic-angular";
 
 export class PreferencesPage {
 
+  private language: string;
   private translateService: TranslateService;
 
   constructor(translateService: TranslateService,
@@ -21,6 +22,7 @@ export class PreferencesPage {
               private storage: Storage,
               public alertCtrl: AlertController) {
     this.translateService = translateService;
+    this.language = this.translateService.currentLang;
   }
 
   rateApp() {
@@ -29,6 +31,7 @@ export class PreferencesPage {
 
   setLanguage(language: string): void {
     this.translateService.use(language);
+    this.storage.set('language', language);
   }
 
   showConfirm() {

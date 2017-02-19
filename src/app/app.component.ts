@@ -18,7 +18,15 @@ export class MyApp {
 
     this.translateService = translateService;
     this.translateService.setDefaultLang('en');
-    this.translateService.use(this.translateService.getBrowserLang());
+
+    let languageToUse = this.translateService.getBrowserLang();
+    storage.get('language').then((language) => {
+      if (language) {
+        languageToUse = language;
+      }
+
+      this.translateService.use(languageToUse);
+    });
 
     storage.get('storageLoaded').then((storageLoaded) => {
       if (!storageLoaded) {
