@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {Market} from 'ionic-native';
 import {TranslateService} from "ng2-translate";
 import {ItemsService} from "../../shared/services/items.service";
 import {CategoriesService} from "../../shared/services/categories.service";
@@ -23,10 +22,6 @@ export class PreferencesPage {
               public alertCtrl: AlertController) {
     this.translateService = translateService;
     this.language = this.translateService.currentLang;
-  }
-
-  rateApp() {
-    Market.open('packingup.core.activities');
   }
 
   setLanguage(language: string): void {
