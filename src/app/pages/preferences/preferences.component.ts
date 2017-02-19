@@ -26,7 +26,7 @@ export class PreferencesPage {
   }
 
   rateApp() {
-    Market.open('com.ismaestro.packingup');
+    Market.open('packingup.core.activities');
   }
 
   setLanguage(language: string): void {

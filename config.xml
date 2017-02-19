@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ismaestro.packingup" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="packingup.core.activities" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Packing up</name>
   <description>Assistant that helps you to pack up when travel.</description>
   <author email="ramossilvanismael@gmail.com" href="https://www.linkedin.com/in/ramossilvanismael/">Ismaestro</author>
