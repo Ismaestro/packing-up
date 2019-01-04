@@ -4,9 +4,15 @@
   <p align="center">
     An app to make a list of things you have to carry on in your travels
     <br>
+    <br>
+    <a href="https://play.google.com/store/apps/details?id=packingup.core.activities">
+      <img src="https://media.giphy.com/media/6bcf8s3JAWHmevnEmV/giphy.gif" alt="Demo example"/>
+    </a>
+    <br>
     <a href="https://github.com/Ismaestro/packing-up/issues/new?template=bug.md">Report bug</a>
     ·
     <a href="https://github.com/Ismaestro/packing-up/issues/new?template=feature.md&labels=feature">Request feature</a>
+    <br>
   </p>
 </p>
 
